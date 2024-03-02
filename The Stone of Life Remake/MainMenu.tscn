@@ -1,0 +1,59 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxbt3cm8gwa0g"]
+
+[ext_resource type="Texture2D" uid="uid://dengjgueko775" path="res://Без имени.jpg" id="1_g2hy6"]
+[ext_resource type="Script" path="res://Control.gd" id="1_qlkbe"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_de8jk"]
+specular_color = Color(1, 0.14902, 1, 1)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(682, 404)
+scale = Vector2(5.37928, 4.50654)
+texture = ExtResource("1_g2hy6")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 104.945
+offset_top = 60.1135
+offset_right = 144.945
+offset_bottom = 100.114
+script = ExtResource("1_qlkbe")
+
+[node name="NewGame" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = -73.9448
+offset_top = 134.886
+offset_right = 136.055
+offset_bottom = 194.886
+text = "New Game"
+icon = SubResource("CanvasTexture_de8jk")
+
+[node name="LoadGame" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = -77.0
+offset_top = 211.0
+offset_right = 140.0
+offset_bottom = 270.0
+text = "Load Game"
+
+[node name="Exit" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = -72.0
+offset_top = 289.0
+offset_right = 141.0
+offset_bottom = 344.0
+text = "Выход"
+
+[node name="CheckButton" type="CheckButton" parent="Control"]
+layout_mode = 0
+offset_left = 858.055
+offset_top = -47.1135
+offset_right = 1011.06
+offset_bottom = 12.8865
+text = "Open Music"
+
+[connection signal="pressed" from="Control/NewGame" to="Control" method="_on_new_game_pressed"]
+[connection signal="pressed" from="Control/Exit" to="Control" method="_on_exit_pressed"]

@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://dnpyj4lc8cmrt"]
+
+[sub_resource type="Gradient" id="Gradient_6acka"]
+offsets = PackedFloat32Array(0.0181818, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rsyo4"]
+gradient = SubResource("Gradient_6acka")
+
+[sub_resource type="Curve" id="Curve_47xf2"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_s4jlt"]
+curve = SubResource("Curve_47xf2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_65dm5"]
+spread = 179.457
+initial_velocity_min = 24.1
+initial_velocity_max = 24.1
+gravity = Vector3(0, 0, 0)
+scale_min = 3.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_s4jlt")
+color = Color(1, 0, 1, 1)
+color_initial_ramp = SubResource("GradientTexture1D_rsyo4")
+
+[sub_resource type="SphereMesh" id="SphereMesh_ac04x"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.66577, 8.88142, 0)
+emitting = false
+amount = 30
+lifetime = 0.64
+preprocess = 600.0
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_65dm5")
+draw_pass_1 = SubResource("SphereMesh_ac04x")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="GPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.66577, 8.88142, 0)
+emitting = false
+amount = 30
+lifetime = 0.64
+preprocess = 600.0
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_65dm5")
+draw_pass_1 = SubResource("SphereMesh_ac04x")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.955087, 0.282321, -0.0900186, 0.296325, 0.909951, -0.29014, 0, -0.303784, -0.952741, 0, 7.1848, -11.0222)

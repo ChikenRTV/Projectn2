@@ -1,0 +1,138 @@
+[gd_scene load_steps=8 format=3 uid="uid://bntfwrsjj73t6"]
+
+[ext_resource type="Script" path="res://Object/Player.gd" id="1_flji2"]
+[ext_resource type="Texture2D" uid="uid://bfbot2p0qxij8" path="res://НовыйХолст1.png" id="2_ah0ot"]
+
+[sub_resource type="Animation" id="Animation_ymjyx"]
+resource_name = "Run"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(71, 21), Vector2(33, 20), Vector2(71, 21)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hand2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(-0.2, 0, 0.0001, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-93, 17), Vector2(-93, 17), Vector2(-93, 17), Vector2(-55, 17)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Leg:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.0002, 0.3, 0.3001, 0.3002, 0.7, 0.7001, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-11, 80), Vector2(-11, 80), Vector2(4, 81), Vector2(-11, 80), Vector2(-5, 66), Vector2(-9, 63), Vector2(-28, 90), Vector2(-29, 85), Vector2(-11, 80)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Leg2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-62, 82), Vector2(-33, 63), Vector2(-38, 90), Vector2(-62, 82)]
+}
+
+[sub_resource type="Animation" id="Animation_kji86"]
+resource_name = "Stand"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(58, 17)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t5qn8"]
+_data = {
+"Run": SubResource("Animation_ymjyx"),
+"Stand": SubResource("Animation_kji86")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u0h2l"]
+radius = 82.0975
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fikt1"]
+radius = 13.5015
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(0.653698, 0.653698)
+collision_layer = 51
+script = ExtResource("1_flji2")
+metadata/_edit_horizontal_guides_ = [-133.0, -98.0]
+
+[node name="Hand2" type="Sprite2D" parent="."]
+position = Vector2(-93, 17)
+texture = ExtResource("2_ah0ot")
+region_enabled = true
+region_rect = Rect2(208.384, 128.909, 77.8635, 88.1087)
+
+[node name="Leg2" type="Sprite2D" parent="."]
+position = Vector2(-62, 82)
+texture = ExtResource("2_ah0ot")
+region_enabled = true
+region_rect = Rect2(16.767, 235.292, 83.6639, 74.3802)
+
+[node name="Torse" type="Sprite2D" parent="."]
+position = Vector2(-11, -17)
+texture = ExtResource("2_ah0ot")
+region_enabled = true
+region_rect = Rect2(5.20003, 44.7, 209, 195.8)
+
+[node name="Hand" type="Sprite2D" parent="."]
+position = Vector2(71, 21)
+texture = ExtResource("2_ah0ot")
+region_enabled = true
+region_rect = Rect2(208.384, 128.909, 77.8635, 88.1087)
+
+[node name="Leg" type="Sprite2D" parent="."]
+position = Vector2(-11, 80)
+texture = ExtResource("2_ah0ot")
+region_enabled = true
+region_rect = Rect2(13.5771, 238.297, 90.9091, 61.6078)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_t5qn8")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-13, 2)
+shape = SubResource("CircleShape2D_u0h2l")
+one_way_collision_margin = 1.2
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-12.2381, -2.38419e-07)
+scale = Vector2(7.3809, 6.84238)
+shape = SubResource("CircleShape2D_fikt1")
+debug_color = Color(0.847059, 0.368627, 0.168627, 0.419608)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

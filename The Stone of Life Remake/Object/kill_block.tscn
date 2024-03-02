@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://kkr66ij3qp1t"]
+
+[ext_resource type="Script" path="res://Object/kill_block.gd" id="1_mmtjl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qhm4c"]
+size = Vector2(53, 54)
+
+[node name="KillBlock" type="Area2D"]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("1_mmtjl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+scale = Vector2(1.15772, 1.1994)
+shape = SubResource("RectangleShape2D_qhm4c")
+debug_color = Color(0.533333, 0, 0.133333, 0.419608)

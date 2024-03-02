@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dl03hlokvgnyp"]
+
+[ext_resource type="Texture2D" uid="uid://bfbot2p0qxij8" path="res://НовыйХолст1.png" id="1_4ofoy"]
+[ext_resource type="Script" path="res://Object/zapiska.gd" id="1_s5okv"]
+[ext_resource type="AudioStream" uid="uid://cmgclsu4fxd78" path="res://Voice.mp3" id="3_7rdx7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_83iqi"]
+radius = 24.0
+
+[node name="Zapiska" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_s5okv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3.8147e-06, 1.90735e-06)
+scale = Vector2(0.532468, 0.510638)
+texture = ExtResource("1_4ofoy")
+region_enabled = true
+region_rect = Rect2(202.205, 222.899, 154.02, 94.6656)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_83iqi")
+
+[node name="Voice" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_7rdx7")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
